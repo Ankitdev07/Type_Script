@@ -6,6 +6,7 @@ interface User {
   lastName: string;
   role: "admin" | "user" | "super-admin";
   posts: Array<Post>;
+  postTypes: PostType[]
 }
 
 interface Post {
@@ -13,12 +14,34 @@ interface Post {
   title: string;
 }
 
+interface PostType {
+  id: number,
+  type: "video" | "audio" | "image"
+}
+
 /**
  * How do we ensure that makeUser ALWAYS
  * returns a user?
  */
-const makeUser = () => {
-  return {};
+const makeUser = ():User => {
+  return {
+    id: 1,
+    firstName: "Matt",
+    lastName: "Pocock",
+    role: "admin",
+    posts: [
+      {
+        id: 1,
+        title: "How I eat so much cheese",
+      },
+    ],
+    postTypes: [
+      {
+        id: 1,
+        type: "audio",
+      },
+    ],
+  };
 };
 
 it("Should return a valid user", () => {
